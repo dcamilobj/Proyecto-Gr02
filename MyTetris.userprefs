@@ -1,0 +1,16 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FacebookSDK\SDK\Scripts\Utils\FacebookLogger.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Spawner.cs" Line="24" Column="43" />
+      <File FileName="Assets\Scripts\Group.cs" Line="198" Column="40" />
+      <File FileName="Assets\Scripts\InstanceCtrl.cs" Line="7" Column="37" />
+      <File FileName="Assets\Scripts\Boton.cs" Line="11" Column="36" />
+      <File FileName="Assets\FacebookSDK\SDK\Scripts\Utils\FacebookLogger.cs" Line="111" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
