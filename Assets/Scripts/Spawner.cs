@@ -19,7 +19,6 @@ public class Spawner : MonoBehaviour {
 public void spawnNext() {
 
 	int i = Random.Range(0, figuras.Length); //Escogemos indice del arreglo aleatoriamente
-        Debug.Log("Estuve acá con i=" + i);
 	// Spawn Group at current Position
 	seleccionada=Instantiate(figuras[i],transform.position,Quaternion.identity);
 	//myInstancer.myInstancedObject =  seleccionada;

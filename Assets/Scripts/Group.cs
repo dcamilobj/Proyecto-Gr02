@@ -6,6 +6,7 @@ using LockingPolicy = Thalmic.Myo.LockingPolicy;
 using Pose = Thalmic.Myo.Pose;
 using UnlockType = Thalmic.Myo.UnlockType;
 using VibrationType = Thalmic.Myo.VibrationType;
+using UnityEditor;
 
 public class Group : MonoBehaviour {
 
@@ -18,12 +19,16 @@ public class Group : MonoBehaviour {
     GameObject current;
     public GameObject myo=null;
     private Pose _lastPose = Pose.Unknown;
+    public  Text scoreT;
+    private int score;
+    private int scoreB;
 
     //-----------------------------------------
 
     // Use this for initialization
     void Start()
     {
+        score = 0;
         if (mov==true && name != "BarraZ" && name != "CuadroA" && name != "LderechaM" && name != "LizquierdaC" && name != "SR" && name != "TV" && name != "ZN" && name != "Hub - 1 Myo")
         {
             // Default position not valid? Then it's game over
@@ -33,8 +38,9 @@ public class Group : MonoBehaviour {
                  && name != "TV" && name != "ZN")*/
           if (!isValidMatrizPos())
         {
-            //Debug.Log("GAME OVER");
-           if(name != "BarraZ" && name != "CuadroA" && name != "LderechaM" && name != "LizquierdaC" && name != "SR" && name != "TV" && name != "ZN" && name != "Hub - 1 Myo")
+           Debug.Log("GAME OVER");
+                EditorUtility.DisplayDialog("GAME OVER", "¿Desea volver a jugar?","Reiniciar");
+                if (name != "BarraZ" && name != "CuadroA" && name != "LderechaM" && name != "LizquierdaC" && name != "SR" && name != "TV" && name != "ZN" && name != "Hub - 1 Myo")
            Destroy(gameObject);
         }
         }
@@ -118,7 +124,6 @@ public class Group : MonoBehaviour {
         }
         if (mov == true && name != "BarraZ" && name != "CuadroA" && name != "LderechaM" && name != "LizquierdaC" && name != "SR" && name != "TV" && name != "ZN" && name != "Hub - 1 Myo")
         {
-            Debug.Log(name);
             // Mover hacia la izquierda
             if (Input.GetKeyDown(KeyCode.LeftArrow)||wavein)
             {
@@ -180,10 +185,20 @@ public class Group : MonoBehaviour {
                     transform.position += new Vector3(0, 1, 0);
 
                     // Clear filled horizontal lines
-                    Matriz.deleteFullRows();
+
+                    scoreB = Matriz.deleteFullRows();
+                    for (int i = 0; i < scoreB; i++)
+                    {
+                        string text = scoreT.text;
+                        score = int.Parse(text) + 10;
+                        scoreT.text = score.ToString();
+                    }
+
+                    scoreB = 0;
+
 
                     // Spawn next Group
-                   FindObjectOfType<Spawner>().spawnNext();
+                    FindObjectOfType<Spawner>().spawnNext();
 
 
                     // Disable script
@@ -210,7 +225,16 @@ public class Group : MonoBehaviour {
                     transform.position += new Vector3(0, 1, 0);
 
                     // Clear filled horizontal lines
-                    Matriz.deleteFullRows();
+                    scoreB = Matriz.deleteFullRows();
+                    for(int i=0; i<scoreB; i++)
+                    { 
+                        string text =scoreT.text;
+                        score = int.Parse(text) + 10;
+                        scoreT.text = score.ToString();
+                    }
+
+                    scoreB = 0;
+
 
                     // Spawn next Group
                     FindObjectOfType<Spawner>().spawnNext();
@@ -234,10 +258,8 @@ public class Group : MonoBehaviour {
             der = true;
             print("Estoy presionando");
 
-		Debug.Log ("objeto: " + o.transform.position.x);
             // Modificar posición
             o.transform.position += new Vector3(1, 0, 0);
-		Debug.Log ("objeto: " + o.transform.position.x);
             // Ver si es válido
             if (isValidMatrizPos())
                 // Actualizar matriz

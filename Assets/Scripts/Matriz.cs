@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Matriz : MonoBehaviour {
 
@@ -9,13 +10,13 @@ public class Matriz : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	    
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+
+    }
 
     //Redondear coordenadas (Rotando puede que se desconfiguren las coordenadas)
     public static Vector2 roundVec2(Vector2 v)
@@ -75,18 +76,28 @@ public class Matriz : MonoBehaviour {
         return true;
     }
 
-    //Si la fila está llena se elimina y bajan las filas restantes
-    public static void deleteFullRows()
+    public void addScore()
     {
+        Debug.Log("Hola");
+        deleteFullRows();
+    }
+
+
+    //Si la fila está llena se elimina y bajan las filas restantes
+    public static int deleteFullRows()
+    {
+        int score=0;
         for (int y = 0; y < h; ++y)
         {
             if (isRowFull(y))
             {
+                score +=1 ;
                 deleteRow(y);
                 decreaseRowsAbove(y + 1);
                 --y;
             }
         }
+        return score;
     }
 
 
