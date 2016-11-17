@@ -183,6 +183,7 @@
     <Compile Include="Assets\Scripts\Group.cs" />
     <Compile Include="Assets\Scripts\InstanceCtrl.cs" />
     <Compile Include="Assets\Scripts\Matriz.cs" />
+    <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
   </ItemGroup>
   <ItemGroup>

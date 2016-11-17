@@ -6,7 +6,7 @@ using LockingPolicy = Thalmic.Myo.LockingPolicy;
 using Pose = Thalmic.Myo.Pose;
 using UnlockType = Thalmic.Myo.UnlockType;
 using VibrationType = Thalmic.Myo.VibrationType;
-using UnityEditor;
+//using UnityEditor;
 
 public class Group : MonoBehaviour {
 
@@ -39,7 +39,7 @@ public class Group : MonoBehaviour {
           if (!isValidMatrizPos())
         {
            Debug.Log("GAME OVER");
-                EditorUtility.DisplayDialog("GAME OVER", "¿Desea volver a jugar?","Reiniciar");
+               // EditorUtility.DisplayDialog("GAME OVER", "¿Desea volver a jugar?","Reiniciar");
                 if (name != "BarraZ" && name != "CuadroA" && name != "LderechaM" && name != "LizquierdaC" && name != "SR" && name != "TV" && name != "ZN" && name != "Hub - 1 Myo")
            Destroy(gameObject);
         }

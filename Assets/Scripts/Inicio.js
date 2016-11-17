@@ -5,6 +5,5 @@
 }
 
 function OnClick() {
-
     Application.Quit();
 }
