@@ -1,7 +1,8 @@
-﻿function OnMouseDown() {
+﻿
+function OnMouseDown() {
 
     // Application.LoadLevel("scene_tetris");
-   
+
 }
 
 function OnClick() {
