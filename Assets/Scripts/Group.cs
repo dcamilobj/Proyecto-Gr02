@@ -20,15 +20,19 @@ public class Group : MonoBehaviour {
     public GameObject myo=null;
     private Pose _lastPose = Pose.Unknown;
     public  Text scoreT;
+    public Text levelT;
+    private int level;
     private int score;
     private int scoreB;
-
+    private float fallSpeed;
     //-----------------------------------------
 
     // Use this for initialization
     void Start()
     {
         score = 0;
+        level = 1;
+        fallSpeed = 1;      //Velocidad de caida
         if (mov==true && name != "BarraZ" && name != "CuadroA" && name != "LderechaM" && name != "LizquierdaC" && name != "SR" && name != "TV" && name != "ZN" && name != "Hub - 1 Myo")
         {
             // Default position not valid? Then it's game over
@@ -96,7 +100,13 @@ public class Group : MonoBehaviour {
     // Update is called once per frame
    void Update()
     {
-      ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo>();
+        //------------------------
+            Debug.Log("lastFall: " + fallSpeed);
+        //Text lf = levelT.text; 
+        //-------------------------
+        // Fall
+
+        ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo>();
         bool fist = false;
         bool wavein = false;
         bool waveout = false;
@@ -167,7 +177,7 @@ public class Group : MonoBehaviour {
                     // Si no es valido revertir movimiento
                     transform.Rotate(0, 0, 90);
             }
-            // Fall
+
             else if (Input.GetKeyDown(KeyCode.DownArrow)|| doubletap)
             {
                 // Modificar posición
@@ -192,6 +202,13 @@ public class Group : MonoBehaviour {
                         string text = scoreT.text;
                         score = int.Parse(text) + 10;
                         scoreT.text = score.ToString();
+                        if ((score % 20) == 0)
+                        {
+                            string lev = levelT.text;
+                            level = int.Parse(lev) + 1;
+                            levelT.text = level.ToString();
+                        }
+                        fallSpeed = fallSpeed + 2;
                     }
 
                     scoreB = 0;
@@ -208,9 +225,9 @@ public class Group : MonoBehaviour {
 
             // Mover hacia abajo
             else if (Input.GetKeyDown(KeyCode.DownArrow)||
-                    Time.time - lastFall >= 1|| doubletap)
+                    Time.time - lastFall >= 0.8|| doubletap)
             {
-                // Modificar posisción
+                // Modificar posición
                 transform.position += new Vector3(0, -1, 0);
 
                 // Ver si es válido
@@ -229,8 +246,16 @@ public class Group : MonoBehaviour {
                     for(int i=0; i<scoreB; i++)
                     { 
                         string text =scoreT.text;
+                        int lastScore = int.Parse(text);
                         score = int.Parse(text) + 10;
                         scoreT.text = score.ToString();
+                        if ((score % 20) == 0)
+                        {
+                            string lev = levelT.text;
+                            level = int.Parse(lev)+1;
+                            levelT.text = level.ToString();
+                        }
+                        fallSpeed = fallSpeed+2;
                     }
 
                     scoreB = 0;
